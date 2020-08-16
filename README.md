@@ -1,4 +1,4 @@
-# 3Deep Pipelines | vfx_pipelines
+# vfx-pipelines
 
 ## Overview
 
@@ -12,6 +12,7 @@ This repo consists of various pipelines that output the results of VFX experimen
     - returns a list of all available effects
 
 - POST /v1/effects/transform-image
+    - initial endpoint to test basic transforms
 
 - POST /v1/effects/image_layers
     - input is source image, customization params, and outputs 3d-photo-inpainting results
