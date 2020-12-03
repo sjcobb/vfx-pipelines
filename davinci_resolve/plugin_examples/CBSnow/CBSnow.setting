@@ -1,0 +1,427 @@
+{
+	Tools = ordered() {
+		CBSnow = MacroOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "SnowBaseBlend",
+					Source = "BlendClone",
+					Name = "Base Snow Blend",
+					Default = 1,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "FillerBlend",
+					Source = "BlendClone",
+					Name = "Filler Snow Blend",
+					Default = 0,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "BGBlend",
+					Source = "BlendClone",
+					Name = "BG Snow Blend",
+					Default = 1,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Rectangle1",
+					Source = "SoftEdge",
+					Name = " Ground Soft Edge",
+					Default = 0.1102,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Rectangle1",
+					Source = "Height",
+					Name = "Ground Height",
+					Default = 0.7096774193548,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "FGBlur",
+					Source = "blend",
+					Name = "FG Snow Blur ",
+					Default = 0.173,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "FGBlend",
+					Source = "BlendClone",
+					Name = "FG Snow Blend",
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "SnowBlur",
+					Source = "HStrength",
+					Name = "Global Snow Blur",
+					Default = 0.4,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "SnowGlow",
+					Source = "BlendClone",
+					Name = "Snow Glow",
+					Default = 0.457,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "SnowOutput",
+					Source = "BlendClone",
+					Name = "Snow Global Opacity",
+					Default = 1,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "SnowAlphaBlack",
+					Source = "TopLeftAlpha",
+					Name = "Snow Alpha ",
+					ControlGroup = 11,
+					Default = 1,
+				},
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "SnowOutput",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				SnowBase = FastNoise {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Quality = Input { Value = 4, },
+						ShutterAngle = Input { Value = 240.9, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							Value = { 0.186, -3.1 },
+							Expression = "Point(time*.003, time*-.05)",
+						},
+						Contrast = Input { Value = 2.65, },
+						Brightness = Input { Value = -1, },
+						XScale = Input { Value = 20.55, },
+						Seethe = Input { Value = 0.203, },
+						SeetheRate = Input { Value = 0.102, },
+						Type = Input { Value = 1, },
+						End = Input { Value = { 0.995995995995996, 0.507130124777184 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.746268656716418] = { 0, 0, 0, 0 },
+									[1] = { 1, 1, 1, 1 }
+								}
+							},
+						},
+						Repeat = Input { Value = 2, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -212.906, 192.28 } },
+				},
+				SnowBaseBlend = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Rectangle1",
+							Source = "Mask",
+						},
+						Background = Input {
+							SourceOp = "SnowAlphaBlack",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SnowBase",
+							Source = "Output",
+						},
+						Edges = Input { Value = 3, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -212.648, 111.51 } },
+				},
+				SnowFiller = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Quality = Input { Value = 4, },
+						ShutterAngle = Input { Value = 240.9, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							Value = { 0.186, -4.96 },
+							Expression = "Point(time*.003, time*-.08)",
+						},
+						Detail = Input { Value = 4.41, },
+						Contrast = Input { Value = 2.52, },
+						Brightness = Input { Value = -1, },
+						XScale = Input { Value = 38.98, },
+						Seethe = Input { Value = -0.181, },
+						SeetheRate = Input { Value = 0.449, },
+						Type = Input { Value = 1, },
+						End = Input { Value = { 0.995995995995996, 0.507130124777184 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.746268656716418] = { 0, 0, 0, 0 },
+									[1] = { 1, 1, 1, 1 }
+								}
+							},
+						},
+						Repeat = Input { Value = 2, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -54.7967, 191.47 } },
+				},
+				FillerBlend = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Rectangle1",
+							Source = "Mask",
+						},
+						Blend = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "SnowBaseBlend",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "SnowFiller",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Screen" }, },
+						Edges = Input { Value = 3, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -55.1633, 111.85 } },
+				},
+				BGSnow = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Quality = Input { Value = 4, },
+						ShutterAngle = Input { Value = 240.9, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							Value = { 0.186, -1.24 },
+							Expression = "Point(time*.003, time*-.02)",
+						},
+						Detail = Input { Value = 4.41, },
+						Contrast = Input { Value = 2.59, },
+						Brightness = Input { Value = -1, },
+						XScale = Input { Value = 73.7, },
+						Seethe = Input { Value = 0.13, },
+						SeetheRate = Input { Value = 0.449, },
+						Type = Input { Value = 1, },
+						End = Input { Value = { 0.995995995995996, 0.507130124777184 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.746268656716418] = { 0, 0, 0, 0 },
+									[1] = { 1, 1, 1, 1 }
+								}
+							},
+						},
+						Repeat = Input { Value = 2, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 99.7803, 190.017 } },
+				},
+				BGBlend = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Rectangle1",
+							Source = "Mask",
+						},
+						Background = Input {
+							SourceOp = "FillerBlend",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "BGSnow",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Screen" }, },
+						Edges = Input { Value = 3, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 100.492, 112.316 } },
+				},
+				Rectangle1 = RectangleMask {
+					CtrlWShown = false,
+					Inputs = {
+						ShowViewControls = Input { Value = 0, },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						SoftEdge = Input { Value = 0.1102, },
+						Invert = Input { Value = 1, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Center = Input { Value = { 0.5, 0 }, },
+						Width = Input { Value = 1.348073, },
+						Height = Input { Value = 0.7096774193548, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -51.7935, 22.7834 } },
+				},
+				FGSnow = FastNoise {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Quality = Input { Value = 1, },
+						ShutterAngle = Input { Value = 19.8, },
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							Value = { 0.186, -31 },
+							Expression = "Point(time*.003, time*-.5)",
+						},
+						Detail = Input { Value = 5.2, },
+						Contrast = Input { Value = 2.52, },
+						Brightness = Input { Value = -1, },
+						XScale = Input { Value = 1.26, },
+						Seethe = Input { Value = 0.072, },
+						SeetheRate = Input { Value = 0.016, },
+						Type = Input { Value = 1, },
+						End = Input { Value = { 0.995995995995996, 0.507130124777184 }, },
+						Gradient = Input {
+							Value = Gradient {
+								Colors = {
+									[0.746268656716418] = { 0, 0, 0, 0 },
+									[1] = { 1, 1, 1, 1 }
+								}
+							},
+						},
+						Repeat = Input { Value = 2, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 244.602, 225.777 } },
+				},
+				FGBlur = ofx.com.blackmagicdesign.resolvefx.gaussianblur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Source = Input {
+							SourceOp = "FGSnow",
+							Source = "Output",
+						},
+						HStrength = Input { Value = 1, },
+						VStrength = Input { Value = 1, },
+						Gang = Input { Value = 1, },
+						BorderType = Input { Value = FuID { "BORDER_TYPE_CONSTANT" }, },
+						BlendAmount = Input { Value = 0, },
+						blendGroup = Input { Value = 1, },
+						blend = Input { Value = 0.173, },
+						ignoreContentShape = Input { Value = 0, },
+						legacyIsProcessRGBOnly = Input { Value = 0, },
+						resolvefxVersion = Input { Value = "2.2", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 244.883, 177.081 } },
+				},
+				FGBlend = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "BGBlend",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "FGBlur",
+							Source = "Output",
+						},
+						ApplyMode = Input { Value = FuID { "Screen" }, },
+						Edges = Input { Value = 3, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 245.38, 112.404 } },
+				},
+				SnowBlur = ofx.com.blackmagicdesign.resolvefx.gaussianblur {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Source = Input {
+							SourceOp = "FGBlend",
+							Source = "Output",
+						},
+						HStrength = Input { Value = 0.4, },
+						VStrength = Input { Value = 0.4, },
+						Gang = Input { Value = 1, },
+						BorderType = Input { Value = FuID { "BORDER_TYPE_CONSTANT" }, },
+						BlendAmount = Input { Value = 0, },
+						blendGroup = Input { Value = 1, },
+						blend = Input { Value = 0.339, },
+						ignoreContentShape = Input { Value = 0, },
+						legacyIsProcessRGBOnly = Input { Value = 0, },
+						resolvefxVersion = Input { Value = "2.2", },
+					},
+					ViewInfo = OperatorInfo { Pos = { 402.781, 111.913 } },
+				},
+				SnowGlow = SoftGlow {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Value = 0.457, },
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						Input = Input {
+							SourceOp = "SnowBlur",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 544.573, 112.498 } },
+				},
+				SnowOutput = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "Background1",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Transform1",
+							Source = "Output",
+						},
+						Edges = Input { Value = 3, },
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 794.989, 113.183 } },
+				},
+				SnowAlphaBlack = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -236.262, -10.3737 } },
+				},
+				Transform1 = Transform {
+					CtrlWShown = false,
+					Inputs = {
+						Size = Input { Value = 1.01, },
+						Input = Input {
+							SourceOp = "SnowGlow",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 654.573, 112.498 } },
+				},
+				Background1 = Background {
+					CtrlWShown = false,
+					Inputs = {
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 795.725, 192.287 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "CBSnow"
+}

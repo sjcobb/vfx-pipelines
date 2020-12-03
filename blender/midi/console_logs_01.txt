@@ -1,0 +1,31 @@
+bpy.context.space_data.params.filename = ""
+Modules Installed () from '/Users/scobb/Documents/Data/audiocarver-blender-addon/src/addons/io_scene_audiocarver/import_audiocarver.py' into '/Users/scobb/Library/Application Support/Blender/2.82/scripts/addons'
+bpy.data.window_managers["WinMan"].addon_search = "AudioCarver"
+bpy.data.window_managers["WinMan"].addon_search = ""
+bpy.data.texts["ui_menu.py"].name = "ui_menu.py"
+bpy.context.space_data.recent_folders_active = 1
+bpy.context.space_data.recent_folders_active = 3
+bpy.context.space_data.system_bookmarks_active = 0
+bpy.context.space_data.system_folders_active = 0
+bpy.data.window_managers["WinMan"].addon_search = "aud"
+bpy.data.window_managers["WinMan"].addon_search = "AudioCarver"
+bpy.data.window_managers["WinMan"].addon_search = "AudiCarver"
+bpy.data.window_managers["WinMan"].addon_search = ""
+Modules Installed () from '/Users/scobb/Documents/Data/sjcobb/vfx-pipelines/blender/midi/io_scene_audiocarver_zip.zip' into '/Users/scobb/Library/Application Support/Blender/2.82/scripts/addons'
+Modules Installed (io_scene_audiocarver) from '/Users/scobb/Documents/Data/sjcobb/vfx-pipelines/blender/midi/io_scene_audiocarver.zip' into '/Users/scobb/Library/Application Support/Blender/2.82/scripts/addons'
+bpy.data.window_managers["WinMan"].addon_search = "AudioCarver format"
+bpy.data.window_managers["WinMan"].addon_search = ""
+bpy.data.texts["ui_menu.py"].name = "ui_menu.py"
+Saved "audiosculpture-rig - frames+glow.blend"
+bpy.ops.text.run_script()
+Python script failed, check the message in the system console
+Saved "audiosculpture-rig - frames+glow.blend"
+bpy.ops.text.run_script()
+Python script failed, check the message in the system console
+bpy.ops.text.run_script()
+Python script failed, check the message in the system console
+bpy.data.texts["Text"].name = "Text"
+Saved "audiosculpture-rig - frames+glow.blend"
+bpy.ops.text.run_script()
+Saved "audiosculpture-rig - frames+glow.blend"
+bpy.ops.text.run_script()

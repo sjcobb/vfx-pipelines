@@ -1,0 +1,396 @@
+{
+	Tools = ordered() {
+		CBRoto = MacroOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "Invert",
+					Source = "ApplyMaskInverted",
+					Name = "Invert Roto",
+					Default = 0,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Invert",
+					Source = "MultiplyByMask",
+					Name = "Multiply",
+					Default = 0,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "OnOff",
+					Source = "Mix",
+					Name = "Roto Alpha",
+					Default = 0,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Opacity",
+					Source = "BlendClone",
+					Name = "Color Opacity",
+					Default = 0.5,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Opacity",
+					Source = "Blank1",
+					Default = 1,
+				},
+				Input7 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "TopLeftRed",
+					Name = "Color",
+					ControlGroup = 7,
+					Default = 1,
+				},
+				Input8 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "TopLeftGreen",
+					ControlGroup = 7,
+					Default = 0,
+				},
+				Input9 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "TopLeftBlue",
+					ControlGroup = 7,
+					Default = 0,
+				},
+				Input10 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "TopLeftAlpha",
+					ControlGroup = 7,
+					Default = 1,
+				},
+				Input11 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "TopRightRed",
+					Name = "Top Right",
+					ControlGroup = 8,
+					Default = 0,
+				},
+				Input12 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "TopRightGreen",
+					ControlGroup = 8,
+					Default = 0,
+				},
+				Input13 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "TopRightBlue",
+					ControlGroup = 8,
+					Default = 0,
+				},
+				Input14 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "TopRightAlpha",
+					ControlGroup = 8,
+					Default = 1,
+				},
+				Input15 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "BottomLeftRed",
+					Name = "Bottom Left",
+					ControlGroup = 9,
+					Default = 0,
+				},
+				Input16 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "BottomLeftGreen",
+					ControlGroup = 9,
+					Default = 0,
+				},
+				Input17 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "BottomLeftBlue",
+					ControlGroup = 9,
+					Default = 0,
+				},
+				Input18 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "BottomLeftAlpha",
+					ControlGroup = 9,
+					Default = 1,
+				},
+				Input19 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "BottomRightRed",
+					Name = "Bottom Right",
+					ControlGroup = 10,
+					Default = 0,
+				},
+				Input20 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "BottomRightGreen",
+					ControlGroup = 10,
+					Default = 0,
+				},
+				Input21 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "BottomRightBlue",
+					ControlGroup = 10,
+					Default = 0,
+				},
+				Input22 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "BottomRightAlpha",
+					ControlGroup = 10,
+					Default = 1,
+				},
+				Input23 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "GradientType",
+				},
+				Input24 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "Start",
+					DefaultX = 0,
+					DefaultY = 0.5,
+				},
+				Input25 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "End",
+					DefaultX = 1,
+					DefaultY = 0.5,
+				},
+				Input26 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "Gradient",
+				},
+				Input27 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "GradientInterpolationMethod",
+				},
+				Input28 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "Offset",
+					Default = 0,
+				},
+				Input29 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "Repeat",
+				},
+				Input30 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "SubPixel",
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "In_",
+					Source = "Input",
+				},
+				Input31 = InstanceInput {
+					SourceOp = "In_",
+					Source = "UseFrameFormatSettings",
+					Default = 1,
+					Page = "Resolution",
+				},
+				Input32 = InstanceInput {
+					SourceOp = "In_",
+					Source = "ResetSize",
+					Name = "Uncheck \"Auto\" before Resetting Resolution",
+					Default = 0,
+				},
+				Input6 = InstanceInput {
+					SourceOp = "MaskInput",
+					Source = "EffectMask",
+					Name = "Mask Input",
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "OnOff",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				Invert = Background {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Bitmap1",
+							Source = "Mask",
+						},
+						GlobalIn = Input { Value = 1, },
+						GlobalOut = Input { Value = 9999, },
+						Width = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						Height = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input { Value = 1, },
+						TopLeftGreen = Input { Value = 1, },
+						TopLeftBlue = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, -181.5 } },
+				},
+				Publish1 = PublishNumber {
+					CtrlWShown = false,
+					Inputs = {
+						Value = Input { Value = 1920, },
+					},
+				},
+				Publish2 = PublishNumber {
+					CtrlWShown = false,
+					Inputs = {
+						Value = Input { Value = 1080, },
+					},
+				},
+				OnOff = Dissolve {
+					Transitions = {
+						[0] = "DFTDissolve"
+					},
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Mix = Input { Value = 0, },
+						Background = Input {
+							SourceOp = "Opacity",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "merge_1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 330, -115.5 } },
+				},
+				Opacity = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blend = Input { Value = 0.5, },
+						Blank1 = Input { Value = 1, },
+						Background = Input {
+							SourceOp = "Merge",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "MaskInput",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -275, -115.5 } },
+				},
+				MaskInput = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Blank2 = Input { Value = 1, },
+						Blank5 = Input { Value = 1, },
+						GlobalIn = Input { Value = 1, },
+						GlobalOut = Input { Value = 9999, },
+						Width = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						Height = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftRed = Input { Value = 1, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -330, -181.5 } },
+				},
+				In_ = BetterResize {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Width = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						Height = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						UseFrameFormatSettings = Input { Value = 1, },
+						HiQOnly = Input { Value = 0, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -660, -115.5 } },
+				},
+				Merge = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						Background = Input {
+							SourceOp = "In_",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "blankbg",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -495, -115.5 } },
+				},
+				blankbg = Background {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						GlobalIn = Input { Value = 1, },
+						GlobalOut = Input { Value = 9999, },
+						Width = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						Height = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						TopLeftAlpha = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { -550, 16.5 } },
+				},
+				merge_1 = Merge {
+					CtrlWShown = false,
+					NameSet = true,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Invert",
+							Source = "Output",
+						},
+						Background = Input {
+							SourceOp = "blankbg",
+							Source = "Output",
+						},
+						Foreground = Input {
+							SourceOp = "Merge",
+							Source = "Output",
+						},
+						PerformDepthMerge = Input { Value = 0, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 110, 16.5 } },
+				},
+				Bitmap1 = BitmapMask {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						OutputSize = Input { Value = FuID { "Custom" }, },
+						MaskWidth = Input {
+							SourceOp = "Publish1",
+							Source = "Value",
+						},
+						MaskHeight = Input {
+							SourceOp = "Publish2",
+							Source = "Value",
+						},
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "MaskInput",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { -110, -181.5 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "CBRoto"
+}

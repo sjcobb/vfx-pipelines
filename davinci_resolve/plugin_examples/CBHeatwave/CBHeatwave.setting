@@ -1,0 +1,190 @@
+{
+	Tools = ordered() {
+		CBHeatWave1 = MacroOperator {
+			Inputs = ordered() {
+				Input1 = InstanceInput {
+					SourceOp = "FastNoise1",
+					Source = "Contrast",
+					Name = "Heat Intensity",
+					Default = 1,
+				},
+				Input2 = InstanceInput {
+					SourceOp = "Expression1",
+					Source = "n1",
+					Default = 0.203,
+				},
+				Input3 = InstanceInput {
+					SourceOp = "Transform2",
+					Source = "Angle",
+					Name = " Flow Angle",
+					Default = 0,
+				},
+				Input4 = InstanceInput {
+					SourceOp = "Blur1",
+					Source = "XBlurSize",
+					Name = " Distortion Blur ",
+					MaxScale = 10,
+					Default = 5,
+				},
+				Input5 = InstanceInput {
+					SourceOp = "Instance_FastNoise1",
+					Source = "XScale",
+					Default = 4,
+				},
+				MainInput1 = InstanceInput {
+					SourceOp = "Displace1",
+					Source = "Input",
+				},
+				MainInput2 = InstanceInput {
+					SourceOp = "PipeRouter1",
+					Source = "Input",
+				}
+			},
+			Outputs = {
+				MainOutput1 = InstanceOutput {
+					SourceOp = "Blur1",
+					Source = "Output",
+				}
+			},
+			ViewInfo = GroupInfo { Pos = { 0, 0 } },
+			Tools = ordered() {
+				FastNoise1 = FastNoise {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						Width = Input { Value = 1920, },
+						Height = Input { Value = 1080, },
+						UseFrameFormatSettings = Input { Value = 1, },
+						["Gamut.SLogVersion"] = Input { Value = FuID { "SLog2" }, },
+						Center = Input {
+							SourceOp = "Expression1",
+							Source = "PointResult",
+						},
+						Detail = Input { Value = 4.72, },
+						XScale = Input { Value = 15.91, },
+						SeetheRate = Input { Value = 0.331, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 456.149, -55.4606 } },
+				},
+				Expression1 = Expression {
+					CtrlWZoom = false,
+					CtrlWShown = false,
+					Inputs = {
+						n1 = Input { Value = 0.203, },
+						PointExpressionX = Input { Value = ".5", },
+						PointExpressionY = Input { Value = "time*n1/4", },
+						NumberControls = Input { Value = 1, },
+						NameforNumber1 = Input { Value = "Heat Speed", },
+						ShowNumber2 = Input { Value = 0, },
+						ShowNumber3 = Input { Value = 0, },
+						ShowNumber4 = Input { Value = 0, },
+						ShowNumber5 = Input { Value = 0, },
+						ShowNumber6 = Input { Value = 0, },
+						ShowNumber7 = Input { Value = 0, },
+						ShowNumber8 = Input { Value = 0, },
+						ShowNumber9 = Input { Value = 0, },
+						PointControls = Input { Value = 1, },
+						ShowPoint1 = Input { Value = 0, },
+						ShowPoint2 = Input { Value = 0, },
+						ShowPoint3 = Input { Value = 0, },
+						ShowPoint4 = Input { Value = 0, },
+						ShowPoint5 = Input { Value = 0, },
+						ShowPoint6 = Input { Value = 0, },
+						ShowPoint7 = Input { Value = 0, },
+						ShowPoint8 = Input { Value = 0, },
+						ShowPoint9 = Input { Value = 0, },
+					},
+				},
+				Transform2 = Transform {
+					CtrlWShown = false,
+					Inputs = {
+						Input = Input {
+							SourceOp = "FastNoise1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 456.143, 1.82359 } },
+				},
+				Blur1 = Blur {
+					CtrlWShown = false,
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "Bitmap1",
+							Source = "Mask",
+						},
+						Filter = Input { Value = FuID { "Gaussian" }, },
+						XBlurSize = Input { Value = 5, },
+						Input = Input {
+							SourceOp = "Displace1",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 700.907, 75.3289 } },
+				},
+				Instance_FastNoise1 = FastNoise {
+					CtrlWShown = false,
+					SourceOp = "FastNoise1",
+					Inputs = {
+						EffectMask = Input {
+							SourceOp = "PipeRouter1",
+							Source = "Output",
+						},
+						SettingsNest = Input { },
+						ImageNest = Input { },
+						["Gamut.ColorSpaceNest"] = Input { },
+						["Gamut.GammaSpaceNest"] = Input { },
+						NoiseNest = Input { },
+						XScale = Input { Value = 4, },
+						Color1Nest = Input { },
+						Color2Nest = Input { },
+						GradientNest = Input { },
+						NoiseBrightnessMap = Input { },
+						NoiseDetailMap = Input { },
+						CommentsNest = Input { },
+						FrameRenderScriptNest = Input { },
+						StartRenderScripts = Input { },
+						EndRenderScripts = Input { },
+					},
+					ViewInfo = OperatorInfo { Pos = { 701.703, -55.5187 } },
+				},
+				Bitmap1 = BitmapMask {
+					CtrlWShown = false,
+					Inputs = {
+						Filter = Input { Value = FuID { "Fast Gaussian" }, },
+						MaskWidth = Input { Value = 1920, },
+						MaskHeight = Input { Value = 1080, },
+						PixelAspect = Input { Value = { 1, 1 }, },
+						ClippingMode = Input { Value = FuID { "None" }, },
+						Image = Input {
+							SourceOp = "Instance_FastNoise1",
+							Source = "Output",
+						},
+						Low = Input { Value = 0.372, },
+						High = Input { Value = 0.5, },
+					},
+					ViewInfo = OperatorInfo { Pos = { 700.765, 0.565085 } },
+				},
+				Displace1 = Displace {
+					CtrlWShown = false,
+					Inputs = {
+						Spread = Input { Value = 5, },
+						Foreground = Input {
+							SourceOp = "Transform2",
+							Source = "Output",
+						},
+					},
+					ViewInfo = OperatorInfo { Pos = { 454.556, 75.2034 } },
+				},
+				PipeRouter1 = PipeRouter {
+					CtrlWShown = false,
+					ViewInfo = PipeRouterInfo { Pos = { 618.158, -104.152 } },
+				}
+			},
+		}
+	},
+	ActiveTool = "CBHeatWave1"
+}
